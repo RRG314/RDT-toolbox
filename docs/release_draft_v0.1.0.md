@@ -1,4 +1,10 @@
-# Draft Release Notes - v0.1.0
+# Release Notes - v0.1.0
+
+[![CI](https://github.com/RRG314/RDT-toolbox/actions/workflows/ci.yml/badge.svg)](https://github.com/RRG314/RDT-toolbox/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://github.com/RRG314/RDT-toolbox/blob/main/LICENSE)
+[![Python 3.10+](https://img.shields.io/badge/python-3.10%2B-blue.svg)](https://github.com/RRG314/RDT-toolbox/blob/main/pyproject.toml)
+[![Release](https://img.shields.io/github/v/release/RRG314/RDT-toolbox)](https://github.com/RRG314/RDT-toolbox/releases)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17487650.svg)](https://doi.org/10.5281/zenodo.17487650)
 
 ## Release Theme
 RDT Toolbox initial coherent release: math spec + library tooling + reproducible benchmark evidence.
