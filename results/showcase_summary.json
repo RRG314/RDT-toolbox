@@ -1,0 +1,76 @@
+{
+  "generated_at_utc": "2026-03-04T03:45:18.297244+00:00",
+  "repo_refs": {
+    "rdt-noise": {
+      "branch": "steven/rdt-noise-honest-upgrades",
+      "commit": "9d5f876a9eaa1eadd52a85b835f825dee471bc1a"
+    },
+    "rdt-spatial-index": {
+      "branch": "steven/rdt-spatial-index-honest-upgrades",
+      "commit": "f3bc0d8868ba4ad6561d32f32ed37ddb22ff12eb"
+    },
+    "rdt256": {
+      "branch": "steven/rdt256-honest-upgrades",
+      "commit": "e72d6665a538e4566f406a13a998bd5935e3edae"
+    }
+  },
+  "noise": {
+    "hybrid_speedup_vs_rdt": 1.7959789944399385,
+    "rdt_vs_white_speed_ratio": 205.9451631189001,
+    "hybrid_entropy_delta_vs_rdt": -0.00012415775400764772,
+    "hybrid_acf_abs_delta_vs_rdt": -7.281386744040219e-05,
+    "verdict": "Hybrid improves RDT runtime substantially while preserving similar noise statistics; RDT variants remain far slower than simple white-noise baselines."
+  },
+  "spatial_index": {
+    "datasets": {
+      "uniform_random": {
+        "rdt_query_ms": 113.97120798937976,
+        "rdt_opt_query_ms": 10.391166986664757,
+        "uniform_grid_query_ms": 3.243250015657395,
+        "kd_query_ms": 11.892167007317767,
+        "rdt_to_opt_speedup": 10.968085503355095,
+        "opt_exact_match": 1.0
+      },
+      "clustered": {
+        "rdt_query_ms": 153.02445899578743,
+        "rdt_opt_query_ms": 14.405540976440534,
+        "uniform_grid_query_ms": 3.7468750088009983,
+        "kd_query_ms": 18.57191600720398,
+        "rdt_to_opt_speedup": 10.62261106653686,
+        "opt_exact_match": 1.0
+      },
+      "adversarial_line": {
+        "rdt_query_ms": 131.61645899526775,
+        "rdt_opt_query_ms": 39.94929199689068,
+        "uniform_grid_query_ms": 6.543916009832174,
+        "kd_query_ms": 71.80079200770706,
+        "rdt_to_opt_speedup": 3.294588024376294,
+        "opt_exact_match": 1.0
+      }
+    },
+    "verdict": "Tuned RDT preserves exactness and strongly improves over untuned RDT, but uniform grid is still fastest on these benchmark sets."
+  },
+  "rdt256": {
+    "v3_speedup_vs_v2": 0.8178892157497968,
+    "quality_proxy_delta_v3_vs_v2": -3.979262261341341e-05,
+    "v2_speed_ratio_vs_splitmix": 0.06442346295756075,
+    "verdict": "v3 shows a small quality-proxy improvement over v2 but no throughput win; both RDT streams are much slower than SplitMix64."
+  },
+  "rdt_toolbox_index": {
+    "clear_win_count": 6,
+    "best_win_margin_pct": 77.60000000000001,
+    "packaging_choice": "Option B: RDTShard",
+    "verdict": "RDT hierarchy shows clear measurable gains for shard-resize stability with ancestor buckets plus stable mapping, while baseline hash map remains faster for pure point lookups."
+  },
+  "where_rdt_helps_most": [
+    "RDT spatial hierarchy as a tunable exact partition (relative to untuned RDT baseline).",
+    "Hybrid RDT-noise scheduler (RDT-guided reseeding + fast conventional core).",
+    "Quality-tuned RDT256 output-stage variants for exploratory statistical shaping.",
+    "RDTShard-style stable repartitioning under shard-count changes."
+  ],
+  "honesty_notes": [
+    "No universal superiority claims are made.",
+    "All wins are tied to explicit benchmark settings in repository result files.",
+    "Negative findings are retained and reported."
+  ]
+}

@@ -1,0 +1,18 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test-and-benchmark-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Unit tests
+        run: python3 tools/run_tests.py
+      - name: Index benchmark smoke
+        run: python3 tools/benchmark_rdt_index.py --n-static 8000 --n-mixed-init 4000 --lookup-samples 800 --bucket-samples 200 --mixed-ops 1500

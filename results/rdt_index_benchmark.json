@@ -1,0 +1,1492 @@
+{
+  "generated_at_utc": "2026-03-04T03:45:11.348299+00:00",
+  "seed": 1729,
+  "config": {
+    "n_static": 30000,
+    "n_mixed_init": 15000,
+    "lookup_samples": 2500,
+    "bucket_samples": 800,
+    "query_depth": 10,
+    "mixed_ops": 6000
+  },
+  "systems": [
+    "rdt_depth",
+    "rdt_ancestor",
+    "rdt_ancestor_stable",
+    "hash_map",
+    "sorted_array",
+    "btree_like"
+  ],
+  "static_workloads": [
+    {
+      "workload": "W1_uniform_random",
+      "mode": "depth",
+      "query_depth": 10,
+      "n_keys": 30000,
+      "systems": {
+        "rdt_depth": {
+          "build_ms": 201.9833750091493,
+          "memory_bytes": 115489258,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.2514258181818182,
+            "p50_us": 0.209,
+            "p95_us": 0.458,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 758.5788425000001,
+            "p50_us": 933.2915,
+            "p95_us": 1231.25205,
+            "result_size_mean": 10050.565,
+            "result_size_p95": 15093.0
+          },
+          "partition": {
+            "num_buckets": 14,
+            "bucket_size_mean": 2142.8571428571427,
+            "bucket_size_cv": 1.922050943942723,
+            "worst_bucket_size": 15093
+          },
+          "sharding": {
+            "movement_16_to_20": 1.0,
+            "load_cv_16": 2.089232211975384,
+            "load_cv_20": 2.388747379788086
+          }
+        },
+        "rdt_ancestor": {
+          "build_ms": 214.14741699118167,
+          "memory_bytes": 115489253,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.2554290909090909,
+            "p50_us": 0.25,
+            "p95_us": 0.458,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 741.853635,
+            "p50_us": 932.104,
+            "p95_us": 1177.72085,
+            "result_size_mean": 10050.565,
+            "result_size_p95": 15093.0
+          },
+          "partition": {
+            "num_buckets": 14,
+            "bucket_size_mean": 2142.8571428571427,
+            "bucket_size_cv": 1.922050943942723,
+            "worst_bucket_size": 15093
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8005666666666666,
+            "load_cv_16": 0.025371900467511956,
+            "load_cv_20": 0.029459576824297163
+          }
+        },
+        "rdt_ancestor_stable": {
+          "build_ms": 282.05462501500733,
+          "memory_bytes": 115489245,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.24853490909090908,
+            "p50_us": 0.209,
+            "p95_us": 0.458,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 742.77616125,
+            "p50_us": 935.3335,
+            "p95_us": 1192.12565,
+            "result_size_mean": 10050.565,
+            "result_size_p95": 15093.0
+          },
+          "partition": {
+            "num_buckets": 14,
+            "bucket_size_mean": 2142.8571428571427,
+            "bucket_size_cv": 1.922050943942723,
+            "worst_bucket_size": 15093
+          },
+          "sharding": {
+            "movement_16_to_20": 0.19923333333333335,
+            "load_cv_16": 0.016073166043647613,
+            "load_cv_20": 0.01945136384821269
+          }
+        },
+        "hash_map": {
+          "build_ms": 1.9207079894840717,
+          "memory_bytes": 3151583,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.2218970909090909,
+            "p50_us": 0.208,
+            "p95_us": 0.417,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 2828.2718475,
+            "p50_us": 2798.4790000000003,
+            "p95_us": 3101.8535500000003,
+            "result_size_mean": 10050.565,
+            "result_size_p95": 15093.0
+          },
+          "partition": {
+            "num_buckets": 14,
+            "bucket_size_mean": 2142.8571428571427,
+            "bucket_size_cv": 1.922050943942723,
+            "worst_bucket_size": 15093
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8006666666666666,
+            "load_cv_16": 0.023478784749925482,
+            "load_cv_20": 0.020828399415754976
+          }
+        },
+        "sorted_array": {
+          "build_ms": 13.963167002657428,
+          "memory_bytes": 2333806,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.47424000000000005,
+            "p50_us": 0.458,
+            "p95_us": 0.666,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 1085.75314625,
+            "p50_us": 719.125,
+            "p95_us": 2367.2098,
+            "result_size_mean": 10050.565,
+            "result_size_p95": 15093.0
+          },
+          "partition": {
+            "num_buckets": 14,
+            "bucket_size_mean": 2142.8571428571427,
+            "bucket_size_cv": 1.922050943942723,
+            "worst_bucket_size": 15093
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8006666666666666,
+            "load_cv_16": 0.023478784749925482,
+            "load_cv_20": 0.020828399415754976
+          }
+        },
+        "btree_like": {
+          "build_ms": 12.09741600905545,
+          "memory_bytes": 4018471,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 3.282706909090909,
+            "p50_us": 3.125,
+            "p95_us": 4.167,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 744.86160625,
+            "p50_us": 886.958,
+            "p95_us": 1379.44725,
+            "result_size_mean": 10050.565,
+            "result_size_p95": 15093.0
+          },
+          "partition": {
+            "num_buckets": 14,
+            "bucket_size_mean": 2142.8571428571427,
+            "bucket_size_cv": 1.922050943942723,
+            "worst_bucket_size": 15093
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8006666666666666,
+            "load_cv_16": 0.023478784749925482,
+            "load_cv_20": 0.020828399415754976
+          }
+        }
+      }
+    },
+    {
+      "workload": "W2_sequential",
+      "mode": "depth",
+      "query_depth": 10,
+      "n_keys": 30000,
+      "systems": {
+        "rdt_depth": {
+          "build_ms": 111.8516249989625,
+          "memory_bytes": 35798006,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.2347549090909091,
+            "p50_us": 0.209,
+            "p95_us": 0.416,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 1726.0280125,
+            "p50_us": 1645.8545,
+            "p95_us": 2044.8208499999996,
+            "result_size_mean": 30000.0,
+            "result_size_p95": 30000.0
+          },
+          "partition": {
+            "num_buckets": 1,
+            "bucket_size_mean": 30000.0,
+            "bucket_size_cv": 0.0,
+            "worst_bucket_size": 30000
+          },
+          "sharding": {
+            "movement_16_to_20": 1.0,
+            "load_cv_16": 3.872983346207417,
+            "load_cv_20": 4.358898943540673
+          }
+        },
+        "rdt_ancestor": {
+          "build_ms": 117.25191699224524,
+          "memory_bytes": 35798001,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.2366818181818182,
+            "p50_us": 0.209,
+            "p95_us": 0.417,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 1680.69667375,
+            "p50_us": 1640.625,
+            "p95_us": 1823.6479,
+            "result_size_mean": 30000.0,
+            "result_size_p95": 30000.0
+          },
+          "partition": {
+            "num_buckets": 1,
+            "bucket_size_mean": 30000.0,
+            "bucket_size_cv": 0.0,
+            "worst_bucket_size": 30000
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8448,
+            "load_cv_16": 0.06250475537464685,
+            "load_cv_20": 0.05742937691925042
+          }
+        },
+        "rdt_ancestor_stable": {
+          "build_ms": 101.79295801208355,
+          "memory_bytes": 35797993,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.268896,
+            "p50_us": 0.25,
+            "p95_us": 0.458,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 1674.16732625,
+            "p50_us": 1638.542,
+            "p95_us": 1803.94725,
+            "result_size_mean": 30000.0,
+            "result_size_p95": 30000.0
+          },
+          "partition": {
+            "num_buckets": 1,
+            "bucket_size_mean": 30000.0,
+            "bucket_size_cv": 0.0,
+            "worst_bucket_size": 30000
+          },
+          "sharding": {
+            "movement_16_to_20": 0.1792,
+            "load_cv_16": 0.2743506272394263,
+            "load_cv_20": 0.2640915666119529
+          }
+        },
+        "hash_map": {
+          "build_ms": 1.217915996676311,
+          "memory_bytes": 2991183,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.20666145454545454,
+            "p50_us": 0.167,
+            "p95_us": 0.375,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 2872.3618874999997,
+            "p50_us": 2826.75,
+            "p95_us": 3024.85175,
+            "result_size_mean": 30000.0,
+            "result_size_p95": 30000.0
+          },
+          "partition": {
+            "num_buckets": 1,
+            "bucket_size_mean": 30000.0,
+            "bucket_size_cv": 0.0,
+            "worst_bucket_size": 30000
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8,
+            "load_cv_16": 0.0,
+            "load_cv_20": 0.0
+          }
+        },
+        "sorted_array": {
+          "build_ms": 3.266374988015741,
+          "memory_bytes": 2173406,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.4794610909090909,
+            "p50_us": 0.458,
+            "p95_us": 0.708,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 2068.26989375,
+            "p50_us": 2344.0415000000003,
+            "p95_us": 2919.4851000000003,
+            "result_size_mean": 30000.0,
+            "result_size_p95": 30000.0
+          },
+          "partition": {
+            "num_buckets": 1,
+            "bucket_size_mean": 30000.0,
+            "bucket_size_cv": 0.0,
+            "worst_bucket_size": 30000
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8,
+            "load_cv_16": 0.0,
+            "load_cv_20": 0.0
+          }
+        },
+        "btree_like": {
+          "build_ms": 2.2424169874284416,
+          "memory_bytes": 3858071,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 2.9951869090909087,
+            "p50_us": 3.042,
+            "p95_us": 3.542,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 1737.65018125,
+            "p50_us": 1684.354,
+            "p95_us": 1924.6628499999997,
+            "result_size_mean": 30000.0,
+            "result_size_p95": 30000.0
+          },
+          "partition": {
+            "num_buckets": 1,
+            "bucket_size_mean": 30000.0,
+            "bucket_size_cv": 0.0,
+            "worst_bucket_size": 30000
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8,
+            "load_cv_16": 0.0,
+            "load_cv_20": 0.0
+          }
+        }
+      }
+    },
+    {
+      "workload": "W3_clustered",
+      "mode": "depth",
+      "query_depth": 10,
+      "n_keys": 30000,
+      "systems": {
+        "rdt_depth": {
+          "build_ms": 113.78812498878688,
+          "memory_bytes": 35915126,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.23442981818181818,
+            "p50_us": 0.208,
+            "p95_us": 0.375,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 637.02431,
+            "p50_us": 701.7915,
+            "p95_us": 842.4068999999998,
+            "result_size_mean": 11593.0375,
+            "result_size_p95": 14925.0
+          },
+          "partition": {
+            "num_buckets": 3,
+            "bucket_size_mean": 10000.0,
+            "bucket_size_cv": 0.4081729617045532,
+            "worst_bucket_size": 14925
+          },
+          "sharding": {
+            "movement_16_to_20": 1.0,
+            "load_cv_16": 2.2851464334309566,
+            "load_cv_20": 2.603337814763535
+          }
+        },
+        "rdt_ancestor": {
+          "build_ms": 119.3528330186382,
+          "memory_bytes": 35915121,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.2234690909090909,
+            "p50_us": 0.208,
+            "p95_us": 0.416,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 634.96853875,
+            "p50_us": 699.2505,
+            "p95_us": 850.2437499999999,
+            "result_size_mean": 11593.0375,
+            "result_size_p95": 14925.0
+          },
+          "partition": {
+            "num_buckets": 3,
+            "bucket_size_mean": 10000.0,
+            "bucket_size_cv": 0.4081729617045532,
+            "worst_bucket_size": 14925
+          },
+          "sharding": {
+            "movement_16_to_20": 0.805,
+            "load_cv_16": 0.10617034530518502,
+            "load_cv_20": 0.05763023897611778
+          }
+        },
+        "rdt_ancestor_stable": {
+          "build_ms": 104.51516701141372,
+          "memory_bytes": 35915113,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.22831781818181818,
+            "p50_us": 0.209,
+            "p95_us": 0.416,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 642.3063975,
+            "p50_us": 700.104,
+            "p95_us": 862.0083,
+            "result_size_mean": 11593.0375,
+            "result_size_p95": 14925.0
+          },
+          "partition": {
+            "num_buckets": 3,
+            "bucket_size_mean": 10000.0,
+            "bucket_size_cv": 0.4081729617045532,
+            "worst_bucket_size": 14925
+          },
+          "sharding": {
+            "movement_16_to_20": 0.21366666666666667,
+            "load_cv_16": 0.4556392335072904,
+            "load_cv_20": 0.49043155599034516
+          }
+        },
+        "hash_map": {
+          "build_ms": 1.4859589864499867,
+          "memory_bytes": 2991175,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.1919530909090909,
+            "p50_us": 0.166,
+            "p95_us": 0.334,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 2732.7774074999998,
+            "p50_us": 2761.6455,
+            "p95_us": 2969.1869,
+            "result_size_mean": 11593.0375,
+            "result_size_p95": 14925.0
+          },
+          "partition": {
+            "num_buckets": 3,
+            "bucket_size_mean": 10000.0,
+            "bucket_size_cv": 0.4081729617045532,
+            "worst_bucket_size": 14925
+          },
+          "sharding": {
+            "movement_16_to_20": 0.7998333333333333,
+            "load_cv_16": 0.0019321835661585917,
+            "load_cv_20": 0.0017511900715418264
+          }
+        },
+        "sorted_array": {
+          "build_ms": 6.801667012041435,
+          "memory_bytes": 2173398,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.46789309090909087,
+            "p50_us": 0.417,
+            "p95_us": 0.708,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 989.70974875,
+            "p50_us": 826.4795,
+            "p95_us": 1940.3558999999998,
+            "result_size_mean": 11593.0375,
+            "result_size_p95": 14925.0
+          },
+          "partition": {
+            "num_buckets": 3,
+            "bucket_size_mean": 10000.0,
+            "bucket_size_cv": 0.4081729617045532,
+            "worst_bucket_size": 14925
+          },
+          "sharding": {
+            "movement_16_to_20": 0.7998333333333333,
+            "load_cv_16": 0.0019321835661585917,
+            "load_cv_20": 0.0017511900715418264
+          }
+        },
+        "btree_like": {
+          "build_ms": 5.324666009983048,
+          "memory_bytes": 3858063,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 3.024105818181818,
+            "p50_us": 3.042,
+            "p95_us": 3.708,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 674.11960875,
+            "p50_us": 735.1875,
+            "p95_us": 911.8235499999998,
+            "result_size_mean": 11593.0375,
+            "result_size_p95": 14925.0
+          },
+          "partition": {
+            "num_buckets": 3,
+            "bucket_size_mean": 10000.0,
+            "bucket_size_cv": 0.4081729617045532,
+            "worst_bucket_size": 14925
+          },
+          "sharding": {
+            "movement_16_to_20": 0.7998333333333333,
+            "load_cv_16": 0.0019321835661585917,
+            "load_cv_20": 0.0017511900715418264
+          }
+        }
+      }
+    },
+    {
+      "workload": "W1_uniform_random",
+      "mode": "ancestor",
+      "query_depth": 10,
+      "n_keys": 30000,
+      "systems": {
+        "rdt_depth": {
+          "build_ms": 194.7589999763295,
+          "memory_bytes": 115489186,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.3720447272727273,
+            "p50_us": 0.333,
+            "p95_us": 0.625,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 1.0804775,
+            "p50_us": 1.042,
+            "p95_us": 1.458,
+            "result_size_mean": 1.0125,
+            "result_size_p95": 1.0
+          },
+          "partition": {
+            "num_buckets": 29779,
+            "bucket_size_mean": 1.0074213371839216,
+            "bucket_size_cv": 0.08635194136658293,
+            "worst_bucket_size": 4
+          },
+          "sharding": {
+            "movement_16_to_20": 1.0,
+            "load_cv_16": 2.089232211975384,
+            "load_cv_20": 2.388747379788086
+          }
+        },
+        "rdt_ancestor": {
+          "build_ms": 292.13770799105987,
+          "memory_bytes": 115489181,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.2549290909090909,
+            "p50_us": 0.25,
+            "p95_us": 0.458,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 0.86442,
+            "p50_us": 0.834,
+            "p95_us": 1.167,
+            "result_size_mean": 1.0125,
+            "result_size_p95": 1.0
+          },
+          "partition": {
+            "num_buckets": 29779,
+            "bucket_size_mean": 1.0074213371839216,
+            "bucket_size_cv": 0.08635194136658293,
+            "worst_bucket_size": 4
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8005666666666666,
+            "load_cv_16": 0.025371900467511956,
+            "load_cv_20": 0.029459576824297163
+          }
+        },
+        "rdt_ancestor_stable": {
+          "build_ms": 265.096666989848,
+          "memory_bytes": 115489173,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.2543203636363636,
+            "p50_us": 0.25,
+            "p95_us": 0.458,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 0.8286275000000001,
+            "p50_us": 0.792,
+            "p95_us": 1.125,
+            "result_size_mean": 1.0125,
+            "result_size_p95": 1.0
+          },
+          "partition": {
+            "num_buckets": 29779,
+            "bucket_size_mean": 1.0074213371839216,
+            "bucket_size_cv": 0.08635194136658293,
+            "worst_bucket_size": 4
+          },
+          "sharding": {
+            "movement_16_to_20": 0.19923333333333335,
+            "load_cv_16": 0.016073166043647613,
+            "load_cv_20": 0.01945136384821269
+          }
+        },
+        "hash_map": {
+          "build_ms": 2.9137079836800694,
+          "memory_bytes": 3151559,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.2146450909090909,
+            "p50_us": 0.167,
+            "p95_us": 0.416,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 3737.0109250000005,
+            "p50_us": 3683.167,
+            "p95_us": 3923.0068999999994,
+            "result_size_mean": 1.0125,
+            "result_size_p95": 1.0
+          },
+          "partition": {
+            "num_buckets": 29779,
+            "bucket_size_mean": 1.0074213371839216,
+            "bucket_size_cv": 0.08635194136658293,
+            "worst_bucket_size": 4
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8006666666666666,
+            "load_cv_16": 0.023478784749925482,
+            "load_cv_20": 0.020828399415754976
+          }
+        },
+        "sorted_array": {
+          "build_ms": 13.672291010152549,
+          "memory_bytes": 2333782,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.594744,
+            "p50_us": 0.542,
+            "p95_us": 0.875,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 1.31642,
+            "p50_us": 1.291,
+            "p95_us": 1.5,
+            "result_size_mean": 1.0125,
+            "result_size_p95": 1.0
+          },
+          "partition": {
+            "num_buckets": 29779,
+            "bucket_size_mean": 1.0074213371839216,
+            "bucket_size_cv": 0.08635194136658293,
+            "worst_bucket_size": 4
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8006666666666666,
+            "load_cv_16": 0.023478784749925482,
+            "load_cv_20": 0.020828399415754976
+          }
+        },
+        "btree_like": {
+          "build_ms": 12.933666992466897,
+          "memory_bytes": 4018447,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 3.7007945454545452,
+            "p50_us": 3.25,
+            "p95_us": 5.375,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 2.41851625,
+            "p50_us": 2.3125,
+            "p95_us": 3.833,
+            "result_size_mean": 1.0125,
+            "result_size_p95": 1.0
+          },
+          "partition": {
+            "num_buckets": 29779,
+            "bucket_size_mean": 1.0074213371839216,
+            "bucket_size_cv": 0.08635194136658293,
+            "worst_bucket_size": 4
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8006666666666666,
+            "load_cv_16": 0.023478784749925482,
+            "load_cv_20": 0.020828399415754976
+          }
+        }
+      }
+    },
+    {
+      "workload": "W2_sequential",
+      "mode": "ancestor",
+      "query_depth": 10,
+      "n_keys": 30000,
+      "systems": {
+        "rdt_depth": {
+          "build_ms": 104.96766699361615,
+          "memory_bytes": 35797934,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.26510472727272727,
+            "p50_us": 0.25,
+            "p95_us": 0.417,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 48.485881250000006,
+            "p50_us": 47.625,
+            "p95_us": 54.5851,
+            "result_size_mean": 1010.06,
+            "result_size_p95": 1024.0
+          },
+          "partition": {
+            "num_buckets": 30,
+            "bucket_size_mean": 1000.0,
+            "bucket_size_cv": 0.09372868646613303,
+            "worst_bucket_size": 1024
+          },
+          "sharding": {
+            "movement_16_to_20": 1.0,
+            "load_cv_16": 3.872983346207417,
+            "load_cv_20": 4.358898943540673
+          }
+        },
+        "rdt_ancestor": {
+          "build_ms": 102.3175000154879,
+          "memory_bytes": 35797929,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.22723963636363637,
+            "p50_us": 0.209,
+            "p95_us": 0.416,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 48.11760375,
+            "p50_us": 47.5205,
+            "p95_us": 52.54939999999999,
+            "result_size_mean": 1010.06,
+            "result_size_p95": 1024.0
+          },
+          "partition": {
+            "num_buckets": 30,
+            "bucket_size_mean": 1000.0,
+            "bucket_size_cv": 0.09372868646613303,
+            "worst_bucket_size": 1024
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8448,
+            "load_cv_16": 0.06250475537464685,
+            "load_cv_20": 0.05742937691925042
+          }
+        },
+        "rdt_ancestor_stable": {
+          "build_ms": 101.81154098245315,
+          "memory_bytes": 35797921,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.23610945454545457,
+            "p50_us": 0.209,
+            "p95_us": 0.416,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 48.742155000000004,
+            "p50_us": 47.667,
+            "p95_us": 54.54405,
+            "result_size_mean": 1010.06,
+            "result_size_p95": 1024.0
+          },
+          "partition": {
+            "num_buckets": 30,
+            "bucket_size_mean": 1000.0,
+            "bucket_size_cv": 0.09372868646613303,
+            "worst_bucket_size": 1024
+          },
+          "sharding": {
+            "movement_16_to_20": 0.1792,
+            "load_cv_16": 0.2743506272394263,
+            "load_cv_20": 0.2640915666119529
+          }
+        },
+        "hash_map": {
+          "build_ms": 1.6751670045778155,
+          "memory_bytes": 2991159,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.19390836363636366,
+            "p50_us": 0.166,
+            "p95_us": 0.375,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 3318.62225125,
+            "p50_us": 3283.4165000000003,
+            "p95_us": 3444.10205,
+            "result_size_mean": 1010.06,
+            "result_size_p95": 1024.0
+          },
+          "partition": {
+            "num_buckets": 30,
+            "bucket_size_mean": 1000.0,
+            "bucket_size_cv": 0.09372868646613303,
+            "worst_bucket_size": 1024
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8,
+            "load_cv_16": 0.0,
+            "load_cv_20": 0.0
+          }
+        },
+        "sorted_array": {
+          "build_ms": 3.422250010771677,
+          "memory_bytes": 2173382,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.45231127272727273,
+            "p50_us": 0.417,
+            "p95_us": 0.625,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 29.2994275,
+            "p50_us": 29.042,
+            "p95_us": 31.835099999999997,
+            "result_size_mean": 1010.06,
+            "result_size_p95": 1024.0
+          },
+          "partition": {
+            "num_buckets": 30,
+            "bucket_size_mean": 1000.0,
+            "bucket_size_cv": 0.09372868646613303,
+            "worst_bucket_size": 1024
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8,
+            "load_cv_16": 0.0,
+            "load_cv_20": 0.0
+          }
+        },
+        "btree_like": {
+          "build_ms": 2.3750409891363233,
+          "memory_bytes": 3858047,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 3.1047709090909095,
+            "p50_us": 3.083,
+            "p95_us": 3.75,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 53.107295,
+            "p50_us": 52.917,
+            "p95_us": 57.379149999999996,
+            "result_size_mean": 1010.06,
+            "result_size_p95": 1024.0
+          },
+          "partition": {
+            "num_buckets": 30,
+            "bucket_size_mean": 1000.0,
+            "bucket_size_cv": 0.09372868646613303,
+            "worst_bucket_size": 1024
+          },
+          "sharding": {
+            "movement_16_to_20": 0.8,
+            "load_cv_16": 0.0,
+            "load_cv_20": 0.0
+          }
+        }
+      }
+    },
+    {
+      "workload": "W3_clustered",
+      "mode": "ancestor",
+      "query_depth": 10,
+      "n_keys": 30000,
+      "systems": {
+        "rdt_depth": {
+          "build_ms": 105.49449999234639,
+          "memory_bytes": 35915054,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.24133054545454546,
+            "p50_us": 0.209,
+            "p95_us": 0.416,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 47.70043125,
+            "p50_us": 48.125,
+            "p95_us": 53.92739999999999,
+            "result_size_mean": 990.525,
+            "result_size_p95": 1024.0
+          },
+          "partition": {
+            "num_buckets": 33,
+            "bucket_size_mean": 909.0909090909091,
+            "bucket_size_cv": 0.28253806823152167,
+            "worst_bucket_size": 1024
+          },
+          "sharding": {
+            "movement_16_to_20": 1.0,
+            "load_cv_16": 2.2851464334309566,
+            "load_cv_20": 2.603337814763535
+          }
+        },
+        "rdt_ancestor": {
+          "build_ms": 105.07804100052454,
+          "memory_bytes": 35915049,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.23556,
+            "p50_us": 0.209,
+            "p95_us": 0.416,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 47.934383749999995,
+            "p50_us": 48.2085,
+            "p95_us": 54.84439999999999,
+            "result_size_mean": 990.525,
+            "result_size_p95": 1024.0
+          },
+          "partition": {
+            "num_buckets": 33,
+            "bucket_size_mean": 909.0909090909091,
+            "bucket_size_cv": 0.28253806823152167,
+            "worst_bucket_size": 1024
+          },
+          "sharding": {
+            "movement_16_to_20": 0.805,
+            "load_cv_16": 0.10617034530518502,
+            "load_cv_20": 0.05763023897611778
+          }
+        },
+        "rdt_ancestor_stable": {
+          "build_ms": 179.17287501040846,
+          "memory_bytes": 35915041,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.22533745454545454,
+            "p50_us": 0.208,
+            "p95_us": 0.416,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 48.26138,
+            "p50_us": 48.209,
+            "p95_us": 55.6292,
+            "result_size_mean": 990.525,
+            "result_size_p95": 1024.0
+          },
+          "partition": {
+            "num_buckets": 33,
+            "bucket_size_mean": 909.0909090909091,
+            "bucket_size_cv": 0.28253806823152167,
+            "worst_bucket_size": 1024
+          },
+          "sharding": {
+            "movement_16_to_20": 0.21366666666666667,
+            "load_cv_16": 0.4556392335072904,
+            "load_cv_20": 0.49043155599034516
+          }
+        },
+        "hash_map": {
+          "build_ms": 1.572708017192781,
+          "memory_bytes": 2991151,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.23605018181818183,
+            "p50_us": 0.209,
+            "p95_us": 0.416,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 3474.3581599999998,
+            "p50_us": 3440.7290000000003,
+            "p95_us": 3597.1562499999995,
+            "result_size_mean": 990.525,
+            "result_size_p95": 1024.0
+          },
+          "partition": {
+            "num_buckets": 33,
+            "bucket_size_mean": 909.0909090909091,
+            "bucket_size_cv": 0.28253806823152167,
+            "worst_bucket_size": 1024
+          },
+          "sharding": {
+            "movement_16_to_20": 0.7998333333333333,
+            "load_cv_16": 0.0019321835661585917,
+            "load_cv_20": 0.0017511900715418264
+          }
+        },
+        "sorted_array": {
+          "build_ms": 6.4432079961989075,
+          "memory_bytes": 2173374,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 0.4238512727272727,
+            "p50_us": 0.416,
+            "p95_us": 0.584,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 32.39908,
+            "p50_us": 32.791,
+            "p95_us": 35.375,
+            "result_size_mean": 990.525,
+            "result_size_p95": 1024.0
+          },
+          "partition": {
+            "num_buckets": 33,
+            "bucket_size_mean": 909.0909090909091,
+            "bucket_size_cv": 0.28253806823152167,
+            "worst_bucket_size": 1024
+          },
+          "sharding": {
+            "movement_16_to_20": 0.7998333333333333,
+            "load_cv_16": 0.0019321835661585917,
+            "load_cv_20": 0.0017511900715418264
+          }
+        },
+        "btree_like": {
+          "build_ms": 5.260500009171665,
+          "memory_bytes": 3858039,
+          "lookup": {
+            "count": 2750,
+            "mean_us": 3.145978545454546,
+            "p50_us": 3.125,
+            "p95_us": 3.959,
+            "hit_rate": 0.9090909090909091
+          },
+          "bucket_query": {
+            "count": 800,
+            "mean_us": 54.75055375,
+            "p50_us": 55.416,
+            "p95_us": 60.91815,
+            "result_size_mean": 990.525,
+            "result_size_p95": 1024.0
+          },
+          "partition": {
+            "num_buckets": 33,
+            "bucket_size_mean": 909.0909090909091,
+            "bucket_size_cv": 0.28253806823152167,
+            "worst_bucket_size": 1024
+          },
+          "sharding": {
+            "movement_16_to_20": 0.7998333333333333,
+            "load_cv_16": 0.0019321835661585917,
+            "load_cv_20": 0.0017511900715418264
+          }
+        }
+      }
+    }
+  ],
+  "mixed_workload": {
+    "read_80_write_20": {
+      "rdt_depth": {
+        "ops": 6000,
+        "read_ops": 4739,
+        "write_ops": 1261,
+        "throughput_ops_s": 689008.455801681,
+        "read_latency": {
+          "count": 4739,
+          "mean_us": 0.205397341211226,
+          "p50_us": 0.167,
+          "p95_us": 0.375
+        },
+        "write_latency": {
+          "count": 1261,
+          "mean_us": 3.9213441712926245,
+          "p50_us": 3.791,
+          "p95_us": 4.708
+        },
+        "final_size": 16261
+      },
+      "rdt_ancestor": {
+        "ops": 6000,
+        "read_ops": 4836,
+        "write_ops": 1164,
+        "throughput_ops_s": 711550.3974523817,
+        "read_latency": {
+          "count": 4836,
+          "mean_us": 0.20953804797353184,
+          "p50_us": 0.167,
+          "p95_us": 0.375
+        },
+        "write_latency": {
+          "count": 1164,
+          "mean_us": 3.969626288659794,
+          "p50_us": 3.875,
+          "p95_us": 4.75
+        },
+        "final_size": 16164
+      },
+      "rdt_ancestor_stable": {
+        "ops": 6000,
+        "read_ops": 4782,
+        "write_ops": 1218,
+        "throughput_ops_s": 709807.1700903325,
+        "read_latency": {
+          "count": 4782,
+          "mean_us": 0.1915319949811794,
+          "p50_us": 0.166,
+          "p95_us": 0.375
+        },
+        "write_latency": {
+          "count": 1218,
+          "mean_us": 3.903542692939245,
+          "p50_us": 3.75,
+          "p95_us": 4.709
+        },
+        "final_size": 16218
+      },
+      "hash_map": {
+        "ops": 6000,
+        "read_ops": 4810,
+        "write_ops": 1190,
+        "throughput_ops_s": 1672726.5754486609,
+        "read_latency": {
+          "count": 4810,
+          "mean_us": 0.1448027027027027,
+          "p50_us": 0.125,
+          "p95_us": 0.208
+        },
+        "write_latency": {
+          "count": 1190,
+          "mean_us": 0.16768487394957984,
+          "p50_us": 0.166,
+          "p95_us": 0.209
+        },
+        "final_size": 16190
+      },
+      "sorted_array": {
+        "ops": 6000,
+        "read_ops": 4775,
+        "write_ops": 1225,
+        "throughput_ops_s": 434133.76754228544,
+        "read_latency": {
+          "count": 4775,
+          "mean_us": 0.40958261780104716,
+          "p50_us": 0.416,
+          "p95_us": 0.5
+        },
+        "write_latency": {
+          "count": 1225,
+          "mean_us": 7.455183673469388,
+          "p50_us": 9.25,
+          "p95_us": 10.375
+        },
+        "final_size": 16225
+      },
+      "btree_like": {
+        "ops": 6000,
+        "read_ops": 4782,
+        "write_ops": 1218,
+        "throughput_ops_s": 204840.49018130233,
+        "read_latency": {
+          "count": 4782,
+          "mean_us": 3.214917398578001,
+          "p50_us": 3.083,
+          "p95_us": 3.791
+        },
+        "write_latency": {
+          "count": 1218,
+          "mean_us": 8.996707717569786,
+          "p50_us": 8.875,
+          "p95_us": 10.292
+        },
+        "final_size": 16218
+      }
+    },
+    "read_95_write_5": {
+      "rdt_depth": {
+        "ops": 6000,
+        "read_ops": 5704,
+        "write_ops": 296,
+        "throughput_ops_s": 1410713.807037475,
+        "read_latency": {
+          "count": 5704,
+          "mean_us": 0.15008572931276298,
+          "p50_us": 0.125,
+          "p95_us": 0.292
+        },
+        "write_latency": {
+          "count": 296,
+          "mean_us": 3.9271824324324323,
+          "p50_us": 3.833,
+          "p95_us": 4.66625
+        },
+        "final_size": 15296
+      },
+      "rdt_ancestor": {
+        "ops": 6000,
+        "read_ops": 5687,
+        "write_ops": 313,
+        "throughput_ops_s": 1368457.0726032278,
+        "read_latency": {
+          "count": 5687,
+          "mean_us": 0.1558027079303675,
+          "p50_us": 0.125,
+          "p95_us": 0.292
+        },
+        "write_latency": {
+          "count": 313,
+          "mean_us": 3.9435367412140576,
+          "p50_us": 3.875,
+          "p95_us": 4.625
+        },
+        "final_size": 15313
+      },
+      "rdt_ancestor_stable": {
+        "ops": 6000,
+        "read_ops": 5686,
+        "write_ops": 314,
+        "throughput_ops_s": 1384176.2885734653,
+        "read_latency": {
+          "count": 5686,
+          "mean_us": 0.14852866690116073,
+          "p50_us": 0.125,
+          "p95_us": 0.291
+        },
+        "write_latency": {
+          "count": 314,
+          "mean_us": 3.928458598726115,
+          "p50_us": 3.833,
+          "p95_us": 4.75
+        },
+        "final_size": 15314
+      },
+      "hash_map": {
+        "ops": 6000,
+        "read_ops": 5716,
+        "write_ops": 284,
+        "throughput_ops_s": 1766611.228917034,
+        "read_latency": {
+          "count": 5716,
+          "mean_us": 0.16172183344996502,
+          "p50_us": 0.125,
+          "p95_us": 0.291
+        },
+        "write_latency": {
+          "count": 284,
+          "mean_us": 0.1884823943661972,
+          "p50_us": 0.167,
+          "p95_us": 0.2848499999999986
+        },
+        "final_size": 15284
+      },
+      "sorted_array": {
+        "ops": 6000,
+        "read_ops": 5715,
+        "write_ops": 285,
+        "throughput_ops_s": 938630.4660206445,
+        "read_latency": {
+          "count": 5715,
+          "mean_us": 0.36271128608923886,
+          "p50_us": 0.375,
+          "p95_us": 0.4169999999999999
+        },
+        "write_latency": {
+          "count": 285,
+          "mean_us": 7.252810526315789,
+          "p50_us": 8.875,
+          "p95_us": 9.657800000000002
+        },
+        "final_size": 15285
+      },
+      "btree_like": {
+        "ops": 6000,
+        "read_ops": 5677,
+        "write_ops": 323,
+        "throughput_ops_s": 262646.23002691974,
+        "read_latency": {
+          "count": 5677,
+          "mean_us": 3.0979936586225123,
+          "p50_us": 3.041,
+          "p95_us": 3.375
+        },
+        "write_latency": {
+          "count": 323,
+          "mean_us": 8.870752321981424,
+          "p50_us": 8.625,
+          "p95_us": 10.042
+        },
+        "final_size": 15323
+      }
+    }
+  },
+  "findings": {
+    "clear_wins": [
+      {
+        "workload": "W1_uniform_random",
+        "mode": "depth",
+        "metric": "shard movement 16->20",
+        "rdt_ancestor_stable": 0.19923333333333335,
+        "best_baseline": 0.8006666666666666,
+        "margin_fraction": 0.7511656952539549
+      },
+      {
+        "workload": "W2_sequential",
+        "mode": "depth",
+        "metric": "shard movement 16->20",
+        "rdt_ancestor_stable": 0.1792,
+        "best_baseline": 0.8,
+        "margin_fraction": 0.776
+      },
+      {
+        "workload": "W3_clustered",
+        "mode": "depth",
+        "metric": "shard movement 16->20",
+        "rdt_ancestor_stable": 0.21366666666666667,
+        "best_baseline": 0.7998333333333333,
+        "margin_fraction": 0.7328610127109815
+      },
+      {
+        "workload": "W1_uniform_random",
+        "mode": "ancestor",
+        "metric": "shard movement 16->20",
+        "rdt_ancestor_stable": 0.19923333333333335,
+        "best_baseline": 0.8006666666666666,
+        "margin_fraction": 0.7511656952539549
+      },
+      {
+        "workload": "W2_sequential",
+        "mode": "ancestor",
+        "metric": "shard movement 16->20",
+        "rdt_ancestor_stable": 0.1792,
+        "best_baseline": 0.8,
+        "margin_fraction": 0.776
+      },
+      {
+        "workload": "W3_clustered",
+        "mode": "ancestor",
+        "metric": "shard movement 16->20",
+        "rdt_ancestor_stable": 0.21366666666666667,
+        "best_baseline": 0.7998333333333333,
+        "margin_fraction": 0.7328610127109815
+      }
+    ],
+    "bucket_query_wins": [
+      {
+        "workload": "W1_uniform_random",
+        "mode": "ancestor",
+        "metric": "bucket/range query p95",
+        "rdt_ancestor": 1.167,
+        "best_baseline": 1.5,
+        "margin_fraction": 0.22199999999999998
+      }
+    ],
+    "adversarial_failures": [
+      {
+        "workload": "W1_uniform_random",
+        "mode": "depth",
+        "issue": "RDT depth-mode lookup p95 slower than best baseline",
+        "rdt_depth_p95_us": 0.458,
+        "best_baseline_p95_us": 0.417
+      },
+      {
+        "workload": "W2_sequential",
+        "mode": "depth",
+        "issue": "RDT depth-mode lookup p95 slower than best baseline",
+        "rdt_depth_p95_us": 0.416,
+        "best_baseline_p95_us": 0.375
+      },
+      {
+        "workload": "W3_clustered",
+        "mode": "depth",
+        "issue": "RDT depth-mode lookup p95 slower than best baseline",
+        "rdt_depth_p95_us": 0.375,
+        "best_baseline_p95_us": 0.334
+      },
+      {
+        "workload": "W1_uniform_random",
+        "mode": "ancestor",
+        "issue": "RDT depth-mode lookup p95 slower than best baseline",
+        "rdt_depth_p95_us": 0.625,
+        "best_baseline_p95_us": 0.416
+      },
+      {
+        "workload": "W2_sequential",
+        "mode": "ancestor",
+        "issue": "RDT depth-mode lookup p95 slower than best baseline",
+        "rdt_depth_p95_us": 0.417,
+        "best_baseline_p95_us": 0.375
+      }
+    ],
+    "modification": {
+      "problem": "Depth-only RDT partitions are coarse and suffer from poor shard-resize stability under modulo mapping.",
+      "smallest_rdt_based_fix": "Use ancestor bucket IDs (ancestor(key, k)) and stable shard mapping (jump-consistent-hash on bucket ID).",
+      "rerun_included": true,
+      "effect_summary": {
+        "movement_metric_checked": "movement_16_to_20",
+        "rdt_depth_vs_rdt_ancestor_stable_improved_in_all_static_rows": true
+      }
+    }
+  }
+}
