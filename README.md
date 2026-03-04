@@ -1,50 +1,106 @@
 # RDT Toolbox
 
-RDT Toolbox is a coherent math/CS repository for your Recursive Division Tree work.
+A practical Python toolbox for **deterministic hierarchical indexing and sharding** based on the Recursive Division Tree (RDT).
 
-It combines:
-- RDT base implementations
-- RDT optimized variants (kept only with measurable benchmark gain)
-- independent tests and reproducible benchmark artifacts
-- paper/citation metadata (including Zenodo links)
+If you need explainable bucket structure, stable repartitioning, and reproducible benchmark evidence, this repo is for you.
 
-## Core Idea
+## What This Is Best For
 
-Use the RDT hierarchy induced by repeated halving:
-- parent map `f(n)=floor(n/2)` for `n>1`, `f(1)=1`
-- depth `D(n)=floor(log2 n)`
-- ancestor buckets `A_k(n)=max(1,floor(n/2^k))`
+- deterministic shard assignment from integer keys
+- minimizing key movement when shard counts change
+- hierarchical bucket queries and ancestry-based grouping
+- experimentation with base vs optimized RDT variants using reproducible tests
 
-This repo packages those structures as practical indexing/sharding tools and evaluates them against standard baselines.
+## What This Is Not Best For
 
-## Library Components
+- fastest possible raw point lookup (hash maps usually win)
+- cryptographic guarantees (RDT PRNG components are research-grade, not security-certified)
 
-Package: `src/rdt_showcase/`
+## Install
 
-- `RDTIndex`: base depth/ancestor bucket index
-- `RDTDualTunedIndex`: dual-number-guided shard-depth tuning variant
-- `Dual`: forward-mode dual number type for autodiff
-- Baselines for fair comparison:
+From source (local dev):
+
+```bash
+git clone https://github.com/RRG314/RDT-toolbox.git
+cd RDT-toolbox
+pip install -e .
+```
+
+Or directly from GitHub:
+
+```bash
+pip install "git+https://github.com/RRG314/RDT-toolbox.git"
+```
+
+## Quick Start: Plugin-Style Usage
+
+### 1) Sharding Plugin (base)
+
+```python
+from rdt_showcase import RDTShardPlugin
+
+keys = list(range(1, 100000))
+sharder = RDTShardPlugin(shard_count=16, shard_depth=8, stable_sharding=True)
+sharder.configure_keys(keys)
+
+# Route a key to shard
+print(sharder.shard_for(123456))
+
+# Estimate movement before resharding 16 -> 20
+print(sharder.movement_rate(keys, new_shard_count=20))
+```
+
+### 2) Sharding Plugin (dual-tuned)
+
+```python
+from rdt_showcase import RDTDualShardPlugin
+
+keys = list(range(1, 100000))
+sharder = RDTDualShardPlugin(shard_count=16, min_depth=4, max_depth=12, init_depth=8.0)
+sharder.configure_keys(keys)
+
+print(sharder.plan.shard_depth)   # tuned depth
+print(sharder.tuning)             # tuning metadata
+print(sharder.shard_for(123456))
+```
+
+### 3) Bucket Query Plugin
+
+```python
+from rdt_showcase import RDTBucketPlugin
+
+items = [(k, {"payload": k}) for k in range(1, 20000)]
+bucket = RDTBucketPlugin(max_bucket_depth=12)
+bucket.build(items)
+
+# query one ancestor bucket
+rows = bucket.query_ancestor_bucket(depth_k=8, bucket_id=1)
+print(len(rows))
+
+# approximate neighbors by shared ancestry
+neighbors = bucket.approximate_neighbors(1500, k_neighbors=8)
+print(neighbors)
+```
+
+## Library API
+
+Main import package: `rdt_showcase`
+
+- Core indexes:
+  - `RDTIndex`
+  - `RDTDualTunedIndex`
+- Plugin adapters:
+  - `RDTShardPlugin`
+  - `RDTDualShardPlugin`
+  - `RDTBucketPlugin`
+- Baselines:
   - `HashMapIndex`
   - `SortedArrayIndex`
   - `BTreeLikeIndex`
+- Dual numbers:
+  - `Dual`, `exp`, `log`, `sigmoid`
 
-## Quick Usage
-
-```python
-from rdt_showcase import RDTIndex, RDTDualTunedIndex
-
-idx = RDTIndex(bucket_mode="ancestor", shard_depth=8, stable_sharding=True)
-idx.build((k, k * 10) for k in range(1, 10000))
-print(idx.get(42))
-print(idx.query_bucket(8, idx.ancestor(42, 8), query_mode="ancestor")[:3])
-
-opt = RDTDualTunedIndex(min_depth=4, max_depth=12, init_depth=8.0)
-opt.build((k, k * 10) for k in range(1, 10000))
-print(opt.shard_depth, opt.tuning["objective"])
-```
-
-## Reproducible Commands
+## Reproducible Benchmarks and Tests
 
 ```bash
 make test
@@ -53,39 +109,36 @@ make benchmark-showcase
 make benchmark-all
 ```
 
-Outputs:
+Artifacts:
 - `results/rdt_index_benchmark.json`
 - `docs/rdt_index_benchmark.md`
 - `results/showcase_summary.json`
 - `docs/rdt_showcase_report.md`
 
-## Win Case and Limits
+## Current Measured Win Case
 
-Current measured win case:
-- **RDTShard-style stable repartitioning** (ancestor buckets + stable mapping) shows clearly lower key movement when shard count changes.
+RDT wins clearly on **stable shard repartitioning**:
+- ancestor buckets + stable mapping produce substantially lower key movement on shard-count changes than baseline modulo partitioning.
 
-Explicit limits (kept in repo reports):
-- hash-map baselines are still faster for pure point lookup in many workloads
-- no universal superiority claim
-- no cryptographic security claim for RDT PRNG streams
+This is tracked in benchmark reports with adversarial cases included.
 
-## Documentation Map
+## Documentation
 
-- [Documentation Index](./docs/INDEX.md)
+- [Docs Index](./docs/INDEX.md)
 - [Math/CS Spec](./docs/rdt_math_cs_spec.md)
 - [Verification Matrix](./docs/verification_matrix.md)
 - [Reproducibility Guide](./docs/reproducibility.md)
 - [Papers and Zenodo Links](./docs/papers_and_zenodo.md)
-- [Draft Release Notes v0.1.0](./docs/release_draft_v0.1.0.md)
+- [PRNG / Noise / Indexing Overview](./docs/prng_noise_indexing_overview.md)
+- [Draft Release Notes](./docs/release_draft_v0.1.0.md)
 
 ## Citation
 
-- Software citation metadata: [`CITATION.cff`](./CITATION.cff)
+- Software metadata: [`CITATION.cff`](./CITATION.cff)
 - Core RDT paper (Zenodo): [https://zenodo.org/records/17487651](https://zenodo.org/records/17487651)
 
-## External Component Integration
+## Suggested GitHub Repo Description
 
-For cross-repo summary (`tools/run_showcase.py`), keep sibling repos available:
-- `../rdt-noise`
-- `../rdt-spatial-index`
-- `../rdt256`
+Copy/paste this for the repository description field:
+
+`Deterministic RDT indexing and sharding toolbox with benchmarked base/optimized variants, plugin adapters, and reproducible math+CS verification.`

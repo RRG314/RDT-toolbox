@@ -5,6 +5,7 @@
 - [Math/CS Spec](./rdt_math_cs_spec.md)
 - [Verification Matrix](./verification_matrix.md)
 - [Reproducibility Guide](./reproducibility.md)
+- [Plugin Integrations](./plugin_integrations.md)
 
 ## Benchmarks
 - [RDT Index Benchmark Report](./rdt_index_benchmark.md)

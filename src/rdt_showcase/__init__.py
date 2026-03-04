@@ -3,6 +3,7 @@
 from .baselines import BTreeLikeIndex, HashMapIndex, SortedArrayIndex
 from .dual import Dual, exp, log, sigmoid, to_dual
 from .dual_tuning import DualTuneResult, RDTDualTunedIndex, dual_tune_shard_depth
+from .plugins import RDTBucketPlugin, RDTDualShardPlugin, RDTShardPlugin, ShardPlan
 from .rdt_index import (
     NeighborResult,
     RDTIndex,
@@ -21,7 +22,11 @@ __all__ = [
     "HashMapIndex",
     "NeighborResult",
     "RDTIndex",
+    "RDTBucketPlugin",
+    "RDTDualShardPlugin",
+    "RDTShardPlugin",
     "RDTDualTunedIndex",
+    "ShardPlan",
     "SortedArrayIndex",
     "ancestor_range",
     "depth_range",
