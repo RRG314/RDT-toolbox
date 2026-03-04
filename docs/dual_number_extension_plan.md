@@ -1,25 +1,30 @@
-# Dual / Hyperreal Extension Plan (No Claims Yet)
+# Dual / Hyperreal Extension Status
 
-This document records how to evaluate dual-number inspired variants honestly.
+This repository now includes a concrete dual-number tooling path as a usable library component.
 
-## Why This Might Help
+## Implemented
 
-Potential benefit area:
-- parameter sensitivity tuning for RDT variants (e.g., selecting depth level `k`, shard-depth settings, or hybrid schedule weights)
+- Dual-number engine: `src/rdt_showcase/dual.py`
+- Dual-guided parameter tuner: `src/rdt_showcase/dual_tuning.py`
+- Dual-tuned index variant: `RDTDualTunedIndex`
+- Benchmark integration: `rdt_ancestor_dual` system in `tools/benchmark_rdt_index.py`
 
-## What Must Be Proven Empirically First
+## What It Optimizes
 
-A dual-number or hyperreal variant should only be kept if it improves at least one measurable target in existing benchmarks:
-- lower shard movement rate for same load balance
-- lower bucket-query `p95` without regressions in lookup `p95`
-- better mixed read/write throughput without large memory cost
+Dual tuning is used to select shard depth via a smooth objective over integer depth candidates:
+- shard movement (`16 -> 20` shards)
+- shard load balance (CV)
+- ancestor-bucket balance (CV)
 
-## Minimal Experiment Design
+The tuned depth is chosen at build time and then used as a standard deterministic RDT ancestor index parameter.
 
-1. Add a variant module under `src/rdt_showcase/`.
-2. Add it as a system in `tools/benchmark_rdt_index.py`.
-3. Re-run full W1/W2/W3/W4 suite.
-4. Keep the variant only if a clear win exists in `docs/rdt_index_benchmark.md`.
+## Validation Requirements
+
+A dual variant is only retained when benchmark artifacts show a measurable gain in at least one tracked metric.
+
+Primary artifact:
+- `results/rdt_index_benchmark.json`
+- `docs/rdt_index_benchmark.md`
 
 ## Integrity Rule
 

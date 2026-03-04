@@ -1,6 +1,6 @@
 # RDT Project Showcase Report
 
-- Generated (UTC): `2026-03-04T03:45:18.297244+00:00`
+- Generated (UTC): `2026-03-04T04:00:04.759076+00:00`
 
 ## Repository Refs
 - `rdt-noise`: branch `steven/rdt-noise-honest-upgrades`, commit `9d5f876a9eaa1eadd52a85b835f825dee471bc1a`
@@ -29,8 +29,8 @@
 - Verdict: v3 shows a small quality-proxy improvement over v2 but no throughput win; both RDT streams are much slower than SplitMix64.
 
 ## 4) RDT Toolbox Index
-- Clear win count: `6`
-- Best margin: `77.6%`
+- Clear win count: `12`
+- Best margin: `81.3%`
 - Packaging choice: `Option B: RDTShard`
 - Verdict: RDT hierarchy shows clear measurable gains for shard-resize stability with ancestor buckets plus stable mapping, while baseline hash map remains faster for pure point lookups.
 

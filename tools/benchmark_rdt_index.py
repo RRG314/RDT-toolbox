@@ -24,6 +24,7 @@ from rdt_showcase import (  # noqa: E402
     BTreeLikeIndex,
     HashMapIndex,
     RDTIndex,
+    RDTDualTunedIndex,
     SortedArrayIndex,
     rdt_ancestor,
     rdt_depth,
@@ -146,6 +147,7 @@ def build_system_specs() -> List[SystemSpec]:
         SystemSpec("rdt_depth", lambda: RDTIndex(bucket_mode="depth", max_bucket_depth=12, shard_depth=8, stable_sharding=False)),
         SystemSpec("rdt_ancestor", lambda: RDTIndex(bucket_mode="ancestor", max_bucket_depth=12, shard_depth=8, stable_sharding=False)),
         SystemSpec("rdt_ancestor_stable", lambda: RDTIndex(bucket_mode="ancestor", max_bucket_depth=12, shard_depth=8, stable_sharding=True)),
+        SystemSpec("rdt_ancestor_dual", lambda: RDTDualTunedIndex(min_depth=4, max_depth=12, init_depth=8.0, stable_sharding=True)),
         SystemSpec("hash_map", HashMapIndex),
         SystemSpec("sorted_array", SortedArrayIndex),
         SystemSpec("btree_like", lambda: BTreeLikeIndex(block_size=128)),
@@ -394,6 +396,7 @@ def detect_findings(results: Dict[str, Any]) -> Dict[str, Any]:
             )
 
         move_rdt_stable = sysm["rdt_ancestor_stable"]["sharding"]["movement_16_to_20"]
+        move_rdt_dual = sysm["rdt_ancestor_dual"]["sharding"]["movement_16_to_20"]
         move_baseline_best = min(
             sysm[name]["sharding"]["movement_16_to_20"] for name in ("hash_map", "sorted_array", "btree_like")
         )
@@ -406,6 +409,18 @@ def detect_findings(results: Dict[str, Any]) -> Dict[str, Any]:
                     "rdt_ancestor_stable": move_rdt_stable,
                     "best_baseline": move_baseline_best,
                     "margin_fraction": (move_baseline_best - move_rdt_stable) / max(1e-9, move_baseline_best),
+                }
+            )
+
+        if move_rdt_dual <= 0.8 * move_baseline_best:
+            wins.append(
+                {
+                    "workload": wl,
+                    "mode": mode,
+                    "metric": "shard movement 16->20 (dual tuned)",
+                    "rdt_ancestor_dual": move_rdt_dual,
+                    "best_baseline": move_baseline_best,
+                    "margin_fraction": (move_baseline_best - move_rdt_dual) / max(1e-9, move_baseline_best),
                 }
             )
 
@@ -432,6 +447,7 @@ def detect_findings(results: Dict[str, Any]) -> Dict[str, Any]:
     modification = {
         "problem": "Depth-only RDT partitions are coarse and suffer from poor shard-resize stability under modulo mapping.",
         "smallest_rdt_based_fix": "Use ancestor bucket IDs (ancestor(key, k)) and stable shard mapping (jump-consistent-hash on bucket ID).",
+        "dual_extension": "Dual-number-guided tuning of shard depth on a smooth sharding objective.",
         "rerun_included": True,
         "effect_summary": {
             "movement_metric_checked": "movement_16_to_20",
@@ -467,6 +483,7 @@ def render_markdown(results: Dict[str, Any]) -> str:
     lines.append("- `rdt_depth`: RDT keyed by depth D(key), modulo shard mapping")
     lines.append("- `rdt_ancestor`: RDT keyed by ancestor bucket at fixed depth, modulo shard mapping")
     lines.append("- `rdt_ancestor_stable`: same ancestor buckets with jump-consistent shard mapping")
+    lines.append("- `rdt_ancestor_dual`: stable ancestor buckets with dual-number-guided shard-depth tuning")
     lines.append("- `hash_map`, `sorted_array`, `btree_like`: required baselines")
     lines.append("")
 
@@ -511,6 +528,7 @@ def render_markdown(results: Dict[str, Any]) -> str:
     mod = findings["modification"]
     lines.append(f"- Problem: {mod['problem']}")
     lines.append(f"- Fix: {mod['smallest_rdt_based_fix']}")
+    lines.append(f"- Dual extension: {mod['dual_extension']}")
     lines.append(f"- Rerun included: `{mod['rerun_included']}`")
     lines.append(
         "- Improvement check (movement metric): "
@@ -522,8 +540,10 @@ def render_markdown(results: Dict[str, Any]) -> str:
     if findings["clear_wins"]:
         lines.append("RDT has a clear measurable win on sharding-resize stability:")
         for w in findings["clear_wins"]:
+            rdt_value = w.get("rdt_ancestor_stable", w.get("rdt_ancestor_dual", 0.0))
+            rdt_label = "rdt_ancestor_stable" if "rdt_ancestor_stable" in w else "rdt_ancestor_dual"
             lines.append(
-                f"- `{w['workload']}` ({w['mode']}): movement `rdt_ancestor_stable={w['rdt_ancestor_stable']:.3f}` vs "
+                f"- `{w['workload']}` ({w['mode']}): movement `{rdt_label}={rdt_value:.3f}` vs "
                 f"best baseline `{w['best_baseline']:.3f}` (margin `{100*w['margin_fraction']:.1f}%`)."
             )
     else:

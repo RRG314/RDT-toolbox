@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-03-04T03:45:18.297244+00:00",
+  "generated_at_utc": "2026-03-04T04:00:04.759076+00:00",
   "repo_refs": {
     "rdt-noise": {
       "branch": "steven/rdt-noise-honest-upgrades",
@@ -57,8 +57,8 @@
     "verdict": "v3 shows a small quality-proxy improvement over v2 but no throughput win; both RDT streams are much slower than SplitMix64."
   },
   "rdt_toolbox_index": {
-    "clear_win_count": 6,
-    "best_win_margin_pct": 77.60000000000001,
+    "clear_win_count": 12,
+    "best_win_margin_pct": 81.33333333333333,
     "packaging_choice": "Option B: RDTShard",
     "verdict": "RDT hierarchy shows clear measurable gains for shard-resize stability with ancestor buckets plus stable mapping, while baseline hash map remains faster for pure point lookups."
   },
